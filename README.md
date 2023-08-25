@@ -2,10 +2,6 @@
 Example Scripts
 In this repo have Video and Scripts tutorial for Unity Development..
 
-# Change Log
-<li>Create Repo >> 01.08.2020</li>
-<li>Full Restore All Scripts Example >> 06.04.2021</li>
-<li>New Section : Video Tutorials Added >> 08.04.2021</li>
 
 # Tutorial Links
 <li>ProBuilder : https://www.youtube.com/watch?v=PUSOg5YEflM </li>
