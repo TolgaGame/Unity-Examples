@@ -1,21 +1,11 @@
 ﻿using UnityEngine;
 
-public class Soldier : MonoBehaviour
-{
-    #region Variables
-
+public class Soldier : MonoBehaviour {
     // Askerimizin uzmanlık alanını belirledik.
     public SoldierTypes soldierType;
 
-    #endregion
-
-    #region Other Methods
-
     // Saldırı.
-    public void Attack()
-    {
+    public void Attack() {
         Debug.Log(soldierType + " is attacking.");
     }
-
-    #endregion
 }

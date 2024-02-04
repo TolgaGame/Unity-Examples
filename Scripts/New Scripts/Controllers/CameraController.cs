@@ -1,26 +1,18 @@
 ﻿using UnityEngine;
 
 // Kamera takip.
-public class CameraController : MonoBehaviour
-{
-    #region Variables
-
+public class CameraController : MonoBehaviour {
     // Takip edilecek obje.
     [SerializeField] private Transform _target;
     // Obje ile kamera arasındaki mesafe.
     [SerializeField] private Vector3 _offset;
     // Takip sırasındaki geçiş yumuşaklığı.
-    [SerializeField] [Range(0, 1f)] private float _smoothness;
-
-    #endregion
-
-    #region MonoBehaviour Callbacks
+    [SerializeField][Range(0, 1f)] private float _smoothness;
 
     // Genellikle kamera işlemlerinde "LateUpdate" kullanılır.
     // Fiziksel işlemlerin fazla olduğu oyunlar "LateUpdate" kullanmak titremeye yol açabilir.
     // Bu tarz durumlarda "FixedUpdate" kullanılabilir.
-    private void LateUpdate()
-    {
+    private void LateUpdate() {
         // Kamera pozisyonu
         Vector3 targetPosition = new Vector3(_target.position.x + _offset.x, _target.position.y + _offset.y, _target.position.z + _offset.z);
         // Lerp -> a değeri b değerine belli bir hassasiyet değeriyle yakınlaşır.
@@ -32,12 +24,10 @@ public class CameraController : MonoBehaviour
 
     // Duruma göre aradaki mesafe değiştirilebilir.
     // Örneğin bitiş çizgisine gelindiğinde farklı açılarda bakılabilir.
-    public void ChangeOffset(Vector3 newOffset)
-    {
+    public void ChangeOffset(Vector3 newOffset) {
         _offset.x = newOffset.x;
         _offset.y = newOffset.y;
         _offset.z = newOffset.z;
     }
 
-    #endregion
 }

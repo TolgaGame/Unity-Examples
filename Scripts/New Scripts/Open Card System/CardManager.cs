@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardManager : MonoBehaviour
-{
-    #region Variables
-
+public class CardManager : MonoBehaviour {
     // Singleton
     public static CardManager Instance;
 
@@ -38,12 +35,7 @@ public class CardManager : MonoBehaviour
     // Paramız var mı ?
     private bool _haveMoney;
 
-    #endregion
-
-    #region MonoBehaviour Callbacks
-
-    private void Awake()
-    {
+    private void Awake() {
         Instance = this;
         GetData();
         _lastRandom = -1;
@@ -52,13 +44,8 @@ public class CardManager : MonoBehaviour
         StartCoroutine(LoadCards());
     }
 
-    #endregion
-
-    #region Other Methods
-
     // Kart açma butonunun fonksiyonu.
-    public void OpenCard()
-    {
+    public void OpenCard() {
         if (_lockedCards.Count > 1)
             StartCoroutine(ShuffleCards());
         else
@@ -66,10 +53,8 @@ public class CardManager : MonoBehaviour
     }
 
     // Kart seçme.
-    public void SelectCard(Image _frame,Card _selected)
-    {
-        if (_selectedCard != null)
-        {
+    public void SelectCard(Image _frame, Card _selected) {
+        if (_selectedCard != null) {
             _selectedCard.GetFrame().color = _defaultColor;
             _selectedCard.ToggleCard(false);
         }
@@ -78,26 +63,22 @@ public class CardManager : MonoBehaviour
     }
 
     // Karıştırma sırasında çekilen random sayı.
-    private int GetRandom()
-    {
+    private int GetRandom() {
         int _randomNumber;
 
         int _random = Random.Range(0, _lockedCards.Count);
 
-        if (_random != _lastRandom)
-        {
+        if (_random != _lastRandom) {
             _randomNumber = _random;
             _lastRandom = _randomNumber;
-        }
-        else
+        } else
             _randomNumber = GetRandom();
 
         return _randomNumber;
     }
 
     // Son kart kalma durumu.
-    private void UnlockLastCard()
-    {
+    private void UnlockLastCard() {
         SetCoin(-_openCardCost);
         _openCardButton.interactable = false;
         _currentCard.GetFrame().color = _defaultColor;
@@ -108,12 +89,10 @@ public class CardManager : MonoBehaviour
     }
 
     // Kartları karıştırma.
-    private IEnumerator ShuffleCards()
-    {
+    private IEnumerator ShuffleCards() {
         SetCoin(-_openCardCost);
         _openCardButton.interactable = false;
-        for (int i = 0; i < _shuffleTimes; i++)
-        {
+        for (int i = 0; i < _shuffleTimes; i++) {
             if (_currentCard != null && _currentCard != _selectedCard)
                 _currentCard.GetFrame().color = _defaultColor;
             int _random = GetRandom();
@@ -124,41 +103,35 @@ public class CardManager : MonoBehaviour
 
         _lockedCards.Remove(_currentCard);
         _currentCard.UnlockCard();
-        if(_haveMoney)
+        if (_haveMoney)
             _openCardButton.interactable = true;
     }
 
     // Açılmayan kartların listeye aktarılması.
-    private IEnumerator LoadCards()
-    {
+    private IEnumerator LoadCards() {
         yield return new WaitForSeconds(.5f);
-        for (int i = 0; i < _allCards.Length; i++)
-        {
+        for (int i = 0; i < _allCards.Length; i++) {
             if (!_allCards[i].isUnlocked)
                 _lockedCards.Add(_allCards[i]);
         }
     }
 
     // Para değişikliği.
-    private void SetCoin(int _newCoin)
-    {
+    private void SetCoin(int _newCoin) {
         _coin += _newCoin;
-        PlayerPrefs.SetInt("Coin",_coin);
+        PlayerPrefs.SetInt("Coin", _coin);
         MoneyControll();
     }
 
-    private void GetData()
-    {
+    private void GetData() {
         _coin = PlayerPrefs.GetInt("Coin", 1000);
         MoneyControll();
     }
 
     // Para kontrolü.
-    private void MoneyControll()
-    {
+    private void MoneyControll() {
         _haveMoney = _coin >= _openCardCost ? true : false;
         _openCardButton.interactable = _haveMoney;
     }
 
-    #endregion
 }

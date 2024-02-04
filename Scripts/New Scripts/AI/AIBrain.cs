@@ -1,25 +1,18 @@
 ﻿using UnityEngine;
 
-public class AIBrain : MonoBehaviour
-{
-    #region Variables
+public class AIBrain : MonoBehaviour {
 
-    // AI'ın zorluk derecesi 
-    [SerializeField] [Range(1, 100)] private int _AIHardness;
+    // AI'ın zorluk derecesi
+    [SerializeField][Range(1, 100)] private int _AIHardness;
 
     // Örnek olarak seçilmiş iki nokta.
     private Transform _truePoint;
     private Transform _wrongPoint;
 
-    #endregion
-
-    #region Other Methods
-
     // Bu fonksiyon her çagırıldığında AI'ın zekasına göre doğru veya yanlış değer döndürür.
     // Bu doğru ve yanlış çıktılarına göre AI'ın senaryosun yönetilebilir.
     // Örneğin "true" çıktısı ile basket atabilir, "false" çıktısı ile dışarıya atması sağlanır.
-    private bool GetRate()
-    {
+    private bool GetRate() {
         bool _isSuccess = false;
         int _randomNumber = Random.Range(1, 101);
 
@@ -32,8 +25,7 @@ public class AIBrain : MonoBehaviour
         return _isSuccess;
     }
 
-    private void Move()
-    {
+    private void Move() {
         Vector3 _movePosition;
         // Eğer fonksiyon AI'ın yüzdesine göre "true" çıktısını verirse. AI doğru yere gider.
         if (GetRate())
@@ -44,6 +36,4 @@ public class AIBrain : MonoBehaviour
 
         transform.position = _movePosition;
     }
-
-    #endregion
 }

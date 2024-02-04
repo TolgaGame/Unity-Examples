@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 
 // Eğik atış
-public class Launcher : MonoBehaviour
-{
-    #region Variables
-
+public class Launcher : MonoBehaviour {
     // Fırlatılacak obje.
     [SerializeField] private Rigidbody _myObject;
     // Fırlatılacak hedef.
@@ -14,21 +11,10 @@ public class Launcher : MonoBehaviour
     // Yer çekimi
     [SerializeField] private float _gravity;
 
-    #endregion
-
-    #region MonoBehaviour Callbacks
-
-    private void Start()
-    {
+    private void Start() {
         Launch();
     }
-
-    #endregion
-
-    #region Other Methods
-
-    public void Launch()
-    {
+    public void Launch() {
         Physics.gravity = Vector3.up * _gravity;
         // Eğik atış formülüne göre objeye kuvvet uygulanır.
         _myObject.velocity = CalculateVelocity();
@@ -36,8 +22,7 @@ public class Launcher : MonoBehaviour
 
     // Gerekli kuvvet hesaplanır.
     // Eğik atış formülü.
-    private Vector3 CalculateVelocity()
-    {
+    private Vector3 CalculateVelocity() {
         float displacementY = _targetPoint.position.y - _myObject.position.y;
         Vector3 displacementXZ = new Vector3(_targetPoint.position.x - _myObject.position.x, 0, _targetPoint.position.z - _myObject.position.z);
 
@@ -47,5 +32,4 @@ public class Launcher : MonoBehaviour
         return velocityXZ + velocityY;
     }
 
-    #endregion
 }

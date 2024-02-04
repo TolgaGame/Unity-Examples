@@ -1,38 +1,22 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour
-{
-    #region Variables
-
+public class Player : MonoBehaviour {
     // Singleton referansı.
     public static Player Instance;
-
     // Hareket hızı.
     [SerializeField] private float _moveSpeed;
 
-    #endregion
-
-    #region MonoBehaviour Callbacks
-
-    private void Awake()
-    {
+    private void Awake() {
         // Singleton
         Instance = this;
     }
-
-    #endregion
-
-    #region Other Methods
-
-    public void MoveX(float value)
-    {
+    public void MoveX(float value) {
         // Gelen input değerine göre sağa veya sola hareket yapar.
         // Space.World -> Nesnenin her zamana local eksene göre hareket etmesini sağlar.
         transform.Translate(transform.right * _moveSpeed * value * Time.deltaTime, Space.World);
     }
 
-    public void Swipe(float value)
-    {
+    public void Swipe(float value) {
         // Swipe yönü.
         float _direction;
         if (value > 0)
@@ -44,5 +28,4 @@ public class Player : MonoBehaviour
         transform.Translate(transform.forward * _direction * _moveSpeed);
     }
 
-    #endregion
 }

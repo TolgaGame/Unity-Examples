@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 
-public class Raycasting : MonoBehaviour
-{
-    #region Variables
-
-    // Algılamak istediğimiz katmanı tanımlıyoruz. 
+public class Raycasting : MonoBehaviour {
+    // Algılamak istediğimiz katmanı tanımlıyoruz.
     // Bu layer dışında diğer nesneleri algılamaz ve daha performanslı bir kullanım olur.
     [SerializeField] private LayerMask _mask;
 
@@ -14,27 +11,16 @@ public class Raycasting : MonoBehaviour
     private RaycastHit _hit;
     private Camera _myCamera;
 
-    #endregion
-
-    #region MonoBehaviour Callbacks
-
-    private void Awake()
-    {
+    private void Awake() {
         _myCamera = Camera.main;
     }
 
-    private void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
+    private void Update() {
+        if (Input.GetMouseButtonDown(0))
             DetectObject();
     }
 
-    #endregion
-
-    #region Other Methods
-
-    private void DetectObject()
-    {
+    private void DetectObject() {
         // Pixel ekrandan 3D ortama ışın yollar.
         // Mouse ile seçilen pixelden ortama ray atar.
         _ray = _myCamera.ScreenPointToRay(Input.mousePosition);
@@ -43,6 +29,4 @@ public class Raycasting : MonoBehaviour
         if (Physics.Raycast(_ray, out _hit, 100, _mask))
             Debug.Log(_hit.transform.name);
     }
-
-    #endregion
 }

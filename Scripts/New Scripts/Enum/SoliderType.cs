@@ -1,6 +1,6 @@
 ﻿[System.Serializable]
 // Asker tiplerimizi tanımladık.
-public enum SoldierTypes{
+public enum SoldierTypes {
 
     Skirmisher,
     Bomber,
