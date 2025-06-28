@@ -1,6 +1,5 @@
-# My Example Scripts (Created for beginner learning practices in 2021)
-Example Scripts
-In this repo have Video and Scripts tutorial for Unity Development..
+# My Example Scripts 
+(Created for beginner learning practices in 2021)
 
 
 # Tutorial Links
